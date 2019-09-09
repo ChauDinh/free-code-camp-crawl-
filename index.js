@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const download = require("image-downloader");
 
 (async () => {
   // Mở trình duyệt
@@ -29,7 +30,17 @@ const puppeteer = require("puppeteer");
   });
 
   // In ra title, url
-  console.log(getArticles);
+  console.log(getArticles.images);
+
+  // Tải ảnh về máy, và đặt trong thư mục imgs
+  await Promise.all(
+    getArticles.images.map(image =>
+      download.image({
+        url: image.image,
+        dest: __dirname
+      })
+    )
+  );
 
   await browser.close();
 })();
