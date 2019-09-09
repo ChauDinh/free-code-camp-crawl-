@@ -37,7 +37,7 @@ const download = require("image-downloader");
     getArticles.images.map(image =>
       download.image({
         url: image.image,
-        dest: __dirname
+        dest: "images/"
       })
     )
   );
